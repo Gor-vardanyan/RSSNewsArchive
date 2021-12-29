@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.17.2",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.15"
+  }
+}

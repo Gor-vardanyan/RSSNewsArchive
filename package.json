@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "install": "^0.13.0"
+  },
+  "scripts": {
+    "install-b": "cd ./b-rssnewsarchive && npm i && cd.." ,
+    "install-f": "cd ./f-rssnewsarchive && npm i && cd.." ,
+    "inst-all-dp": "npm run install-b && npm run install-f",
+    "start-b": "cd ./b-rssnewsarchive/ && nodemon index.js",
+    "start-f": "cd ./f-rssnewsarchive/ && npm run start",
+    "start": "start npm run start-f && npm run start-b",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}

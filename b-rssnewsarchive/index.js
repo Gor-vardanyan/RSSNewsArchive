@@ -1,12 +1,21 @@
 const express = require('express');
+const { mongoDB } = require('./DB/config');
 
-//  initialization of express as app
-const app = express();
+const mongoInit = mongoDB();
 
-// Should add env?
+const expressInit = express();
+
+expressInit.use( express.json() ); //PARSE
+
+//*ROUTES && MONGO INIT
+
+( async() =>{
+    await mongoInit
+    expressInit.get("/", ()=> console.log( "first endpoint" ))
+})()
+
+// const globalRoutes = require('./routes/GlobalRoutes');
+// globalRoutes( expressInit )
+
 PORT = 5000;
-
-//  JSON PARSE ALL INCOMING REQUESTS
-app.use(express.json());
-
-app.listen( PORT, ()=> console.log("Server runing on port " + PORT ));
+expressInit.listen( PORT, ()=> console.log("Server runing on port " + PORT ));

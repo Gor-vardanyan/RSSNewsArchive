@@ -1,0 +1,13 @@
+.cardRegister {
+    border-radius:"5px";
+    display: "flex";
+    justify-content: "center";
+    align-items:"center";
+    border: none;
+    border-radius: 0.5em;
+    height: 220;
+    width: "30vw";
+    margin: "1em";
+    color: "white";
+    filter: drop-shadow( 0px 0px 7px rgba( 0, 0, 0, 0.541 ) );
+}

@@ -44,9 +44,10 @@ const Register = ({ setUser }) => {
                 <Button 
                     style={ { color:"white", width:"100%", backgroundColor:'transparent', marginTop:"1em" } }
                     onClick={() => {
+                        debugger
                         //TODO: send query depending of active /register or login 
                         console.log( userInfo );
-                        //setUser()
+                        setUser("existts")
                     }}
                 >
                     { active ? "Login":"Register" }

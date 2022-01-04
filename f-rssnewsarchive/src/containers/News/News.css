@@ -1,0 +1,23 @@
+#newsPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(47, 80, 128)
+}
+
+#newsTable{
+    display: flex;
+    justify-content: center
+}
+
+.blueback-text {
+    background-color:rgb(47, 80, 128)!important ;
+    border: solid 1px white;
+    color: black;
+}
+text {
+    color: white;
+    font-weight: 700;
+    font-size: 3em;
+    margin-left: 2%;
+}

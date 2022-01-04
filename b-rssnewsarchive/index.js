@@ -1,21 +1,14 @@
 const express = require('express');
-const { mongoDB } = require('./DB/config');
-
-const mongoInit = mongoDB();
+const cors = require('cors');
+const router = require('./routes/GlobalRoutes');
 
 const expressInit = express();
 
+expressInit.use( cors() );
 expressInit.use( express.json() ); //PARSE
 
-//*ROUTES && MONGO INIT
-
-( async() =>{
-    await mongoInit
-    expressInit.get("/", ()=> console.log( "first endpoint" ))
-})()
-
-// const globalRoutes = require('./routes/GlobalRoutes');
-// globalRoutes( expressInit )
+//*ROUTES
+router( expressInit );
 
 PORT = 5000;
 expressInit.listen( PORT, ()=> console.log("Server runing on port " + PORT ));

@@ -1,0 +1,7 @@
+#navInHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D40031;
+    position: fixed
+}

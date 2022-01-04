@@ -2,10 +2,10 @@ import './Home.css';
 import logosvg from '../../Img/logo.svg';
 import Register from '../Register/Register';
 import React, { useState } from 'react';
+import News from '../News/News';
+import Header from '../Header/Header'
 
-const Home = () => {
-
-    const [ user, setUser ] = useState( false );
+const Home = ({user, setUser}) => {
 
     return (
         <>
@@ -22,7 +22,9 @@ const Home = () => {
                         <Register setUser={ setUser }/>
                     </div>
                 </div>
-            :   <>{user}</>
+            :   <>
+                    <News user={ user } />
+                </>
             }
         </>
     )

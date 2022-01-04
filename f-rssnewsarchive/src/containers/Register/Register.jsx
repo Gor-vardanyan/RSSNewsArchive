@@ -1,7 +1,8 @@
 import 'antd/dist/antd.css';
-import { Button, Card, Input} from 'antd';
+import { Button, Card, Input, notification } from 'antd';
 import './Register.css';
 import React, { useState } from 'react';
+import axios from 'axios'
 
 const Register = ({ setUser }) => {
 
@@ -14,7 +15,7 @@ const Register = ({ setUser }) => {
         backgroundColor: "#D40031",
     }
 
-    const [ active, setActive  ] = useState( false );
+    const [ active, setActive  ] = useState( true );
     const [ userInfo, setUserInfo ] = useState( { userName:"", password:"" } );
 
     return (
@@ -43,11 +44,56 @@ const Register = ({ setUser }) => {
 
                 <Button 
                     style={ { color:"white", width:"100%", backgroundColor:'transparent', marginTop:"1em" } }
-                    onClick={() => {
-                        debugger
-                        //TODO: send query depending of active /register or login 
+                    onClick={ async() => {
                         console.log( userInfo );
-                        setUser("existts")
+                        
+                        let resData = {
+                            code: 400,
+                            response:{},
+                            message: "Error: Fill the inputs"
+                        }
+
+                        if ( userInfo.userName && userInfo.password ) {
+                            
+                            let usNameLen = userInfo.userName.length;
+                            let passwLen = userInfo.userName.length;
+
+                            if ( 
+                                usNameLen > 3 
+                                && usNameLen < 10
+                                && passwLen > 3 
+                                && passwLen < 10
+                            ) {
+
+                                const direction = active? "/login" : "/register"
+                                
+                                // if active is truthy it will send a get, else it will send a post
+                                await (
+                                    active ? axios.get 
+                                    : axios.post 
+                                )( "http://localhost:5000" + direction , userInfo )
+                                .then( res => {
+                                    resData = res.data
+                                })
+                                .catch( Err => {
+                                    resData = {
+                                        code: 400,
+                                        message: ""+Err
+                                    }
+                                })
+                            } else if ( usNameLen < 3 || usNameLen > 10 ) resData.message = "User Name has to have between 4 and 9 characters";
+                            else resData.message = "Password has to have between 4 and 9 characters";
+
+                        }
+
+                        notification.open({
+                            message: resData.message,
+                        });
+                        
+                        if ( resData.code < 300 ){
+                            localStorage.setItem('user', JSON.stringify( resData.response ))
+                            setUser( resData.response )
+                        } 
                     }}
                 >
                     { active ? "Login":"Register" }

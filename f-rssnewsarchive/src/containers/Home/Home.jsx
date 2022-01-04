@@ -1,23 +1,32 @@
 import './Home.css';
 import logosvg from '../../Img/logo.svg';
 import Register from '../Register/Register';
+import React, { useState } from 'react';
+import News from '../News/News';
+import Header from '../Header/Header'
 
-const Login = ({ setUser }) => {
+const Home = ({user, setUser}) => {
+
     return (
         <>
-        <div id='homePageComp'>
-            <div style={{width:"50%"}}>
-                <img alt={"logo of the company AllFunds"} src={ logosvg }></img>
-                <div style={ { width:"40%", marginLeft: "4em" } }>
-                    <h4 style={{color: "#1A365D"}}>RSS News archive project in the area of finance and economics,
-                    you can save the articles you like to your archive.</h4>
+            { ! user 
+            ?   <div id='homePageComp'>
+                    <div style={{width:"50%"}}>
+                        <img alt={"logo of the company AllFunds"} src={ logosvg }></img>
+                        <div style={ { width:"40%", marginLeft: "4em" } }>
+                            <h4 style={{color: "#1A365D"}}>RSS News archive project in the area of finance and economics,
+                            you can save the articles you like to your archive.</h4>
+                        </div>
+                    </div>
+                    <div style={{width:"50%"}}>
+                        <Register setUser={ setUser }/>
+                    </div>
                 </div>
-            </div>
-            <div style={{width:"50%"}}>
-                <Register prop={ setUser }/>
-            </div>
-        </div>
+            :   <>
+                    <News user={ user } />
+                </>
+            }
         </>
     )
 }
-export default Login;
+export default Home;

@@ -1,3 +1,9 @@
 @url = http://localhost:5000
 
-GET {{url}}/
+GET {{url}}/?userName=uysera
+####
+
+POST {{url}}/login
+####
+
+POST {{url}}/register

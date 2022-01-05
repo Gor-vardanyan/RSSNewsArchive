@@ -26,12 +26,15 @@ Download mono repository
 
 ### Starting the Project
 Run the `start` script in the `package.json`
-Or write in the terminal to start frontend: `npm run start-f` and to start backned: `npm run start-b`
+or write in the terminal to start frontend: `npm run start-f` and to start backned: `npm run start-b`
+
+Run the script `inst-all-dp` to install all dependencies 
+or write in terminal for the backend `npm run install-b` and for the frontend `npm run install-f`,
 
 ## Use guide
 
 register with an acount or use mine:
-Mongo Atlas used as DB, add to env or it will use local:
+Mongo Atlas used as DB, add .env in b-rssnewsarchive or it will use local:
 MONGO_URL='mongodb+srv://root:admin@cluster0.hofxn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 Login Info

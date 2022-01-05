@@ -9,12 +9,12 @@
     display: flex;
     justify-content: center
 }
-
+/* 
 .blueback-text {
     background-color:rgb(47, 80, 128)!important ;
     border: solid 1px white;
     color: black;
-}
+} */
 text {
     color: white;
     font-weight: 700;

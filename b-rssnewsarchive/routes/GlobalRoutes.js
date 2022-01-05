@@ -12,10 +12,10 @@ const router = async ( expressInit ) => {
         message: "Error: unexpected"
     }
 
-    expressInit.get( "/login", async ( req, res ) => {
-
-        //TODO: password verification
-        const user = await rssarchive.collection('users').findOne( { ...req.query } );
+    expressInit.post( "/login", async ( req, res ) => {
+        const { userName, password } = req.body
+        //TODO: password verification with JWT
+        const user = await rssarchive.collection('users').findOne( { userName, password } );
 
         if ( user ) {
             response = {
@@ -67,6 +67,55 @@ const router = async ( expressInit ) => {
 
     })
     
+    expressInit.post("/saveArticle", async ( req, res ) => { 
+
+        const { user, articleData } = req.body
+        const find = { userName: user.userName };
+
+        const existentUser = await rssarchive.collection('users').findOne( find );
+        if ( existentUser ) {
+
+            const archived = [ ...existentUser.archived, articleData ];
+
+            const set = { $set: { archived } }
+            const update = await rssarchive.collection('users').updateOne( find, set );
+
+            if (update.modifiedCount) response = {
+                code: 200,
+                res: { ...existentUser, archived: archived },
+                message: 'Saved Article'
+            }
+
+        } 
+        console.log( response.code, response.message);
+        return res.send( response )
+
+    })
+
+    expressInit.post("/deleteArticle", async ( req, res ) => { 
+
+        const { user, articleData } = req.body
+        const find = { userName: user.userName };
+
+        let existentUser = await rssarchive.collection('users').findOne( find );
+        if ( existentUser ) {
+            
+            const archived = existentUser.archived.filter(  _article  => _article.id !== articleData.id )
+
+            const set = { $set: { archived } }
+            const update = await rssarchive.collection('users').updateOne( find, set );
+
+            if (update.modifiedCount) response = {
+                code: 200,
+                res: { ...existentUser, archived:archived },
+                message: 'Deleted Article'
+            }
+
+        } 
+        console.log( response.code, response.message);
+        return res.send( response )
+
+    })
 }
 
 module.exports = router 

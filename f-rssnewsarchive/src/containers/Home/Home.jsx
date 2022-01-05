@@ -3,7 +3,6 @@ import logosvg from '../../Img/logo.svg';
 import Register from '../Register/Register';
 import React, { useState } from 'react';
 import News from '../News/News';
-import Header from '../Header/Header'
 
 const Home = ({user, setUser}) => {
 
@@ -23,7 +22,7 @@ const Home = ({user, setUser}) => {
                     </div>
                 </div>
             :   <>
-                    <News user={ user } />
+                    <News user={ user } setUser={setUser} />
                 </>
             }
         </>

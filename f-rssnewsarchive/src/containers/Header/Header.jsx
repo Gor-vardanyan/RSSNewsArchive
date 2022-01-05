@@ -37,16 +37,17 @@ const Header =({ user, setUser })=>{
             <Button 
                 onClick={ () => {
                     localStorage.removeItem("user")
+                    navigate('/')
                     setUser( false )
                 } } 
-                style={ buttonStyle } 
+                style={ { ...buttonStyle, fontSize:"2.2em" } } 
             >
                 <LogoutOutlined />
             </Button>
-            <h4 style={ { color:"white" } } >log out</h4>
+            <h4 style={ { color:"white" } } >logOut</h4>
 
-            
+
         </div>
-    )    
+    )
 }
 export default Header

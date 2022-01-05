@@ -1,0 +1,7 @@
+
+#archiveTable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(47, 80, 128)
+}
